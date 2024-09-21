@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -34,9 +35,10 @@ public class BoardService {
         return new BoardResponseDto(board);
     }
 
-    public Page<BoardResponseDto> getBoards(int page, int size) {
-        return boardRepository.findAll(PageRequest.of(page, size)).map(BoardResponseDto::new);
+    public Page<BoardResponseDto> getBoards(Pageable pageable) {
+        return boardRepository.findAll(pageable).map(BoardResponseDto::new);
     }
+
 
 
 
