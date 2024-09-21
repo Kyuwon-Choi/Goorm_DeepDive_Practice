@@ -13,6 +13,8 @@ public class Board {
     private String title;
     private String content;
 
+    private boolean deleted = false;
+
     public Board(Long id, String title, String content) {
         this.id = id;
         this.title = title;

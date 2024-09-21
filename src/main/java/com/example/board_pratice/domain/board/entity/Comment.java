@@ -13,6 +13,8 @@ public class Comment {
     private String content;
     private Long boardId;
 
+    private boolean deleted = false;
+
     public Comment(Long id, String content, Long boardId) {
         this.id = id;
         this.content = content;
