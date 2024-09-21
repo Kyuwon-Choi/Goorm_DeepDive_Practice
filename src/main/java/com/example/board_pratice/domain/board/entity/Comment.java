@@ -8,7 +8,6 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
-    private Long boardId;
 
     private boolean deleted = false;
 
@@ -16,9 +15,9 @@ public class Comment {
     @JoinColumn(name = "board_id", nullable = false)
     private Board board;
 
-    public Comment(String content, Long boardId) {
+    public Comment(String content, Board board) {
         this.content = content;
-        this.boardId = boardId;
+        this.board = board;
     }
 
     public Comment() {
@@ -32,11 +31,12 @@ public class Comment {
         return content;
     }
 
-    public Long getBoardId() {
-        return boardId;
-    }
 
     public boolean isDeleted() {
         return deleted;
+    }
+
+    public void update(String content) {
+        this.content = content;
     }
 }
