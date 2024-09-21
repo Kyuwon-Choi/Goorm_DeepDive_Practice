@@ -15,12 +15,27 @@ public class Comment {
 
     private boolean deleted = false;
 
-    public Comment(Long id, String content, Long boardId) {
-        this.id = id;
+    public Comment(String content, Long boardId) {
         this.content = content;
         this.boardId = boardId;
     }
 
     public Comment() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public Long getBoardId() {
+        return boardId;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
     }
 }

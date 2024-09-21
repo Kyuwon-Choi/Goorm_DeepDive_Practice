@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.awt.*;
+
 @Entity
 public class Board {
     @Id
@@ -15,12 +17,32 @@ public class Board {
 
     private boolean deleted = false;
 
-    public Board(Long id, String title, String content) {
-        this.id = id;
+    public Board(String title, String content) {
         this.title = title;
         this.content = content;
     }
 
     public Board() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
     }
 }
