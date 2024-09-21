@@ -1,9 +1,6 @@
 package com.example.board_pratice.domain.board.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Comment {
@@ -14,6 +11,10 @@ public class Comment {
     private Long boardId;
 
     private boolean deleted = false;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_id", nullable = false)
+    private Board board;
 
     public Comment(String content, Long boardId) {
         this.content = content;

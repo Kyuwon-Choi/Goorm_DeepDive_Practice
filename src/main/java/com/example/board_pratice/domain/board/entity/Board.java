@@ -1,11 +1,10 @@
 package com.example.board_pratice.domain.board.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Board {
@@ -16,6 +15,9 @@ public class Board {
     private String content;
 
     private boolean deleted = false;
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
     public Board(String title, String content) {
         this.title = title;
