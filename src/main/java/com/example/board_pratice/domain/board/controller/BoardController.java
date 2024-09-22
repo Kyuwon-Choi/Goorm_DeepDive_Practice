@@ -1,5 +1,6 @@
 package com.example.board_pratice.domain.board.controller;
 
+import com.example.board_pratice.domain.board.dto.BoardListResponseDto;
 import com.example.board_pratice.domain.board.dto.BoardRequestDto;
 import com.example.board_pratice.domain.board.dto.BoardResponseDto;
 import com.example.board_pratice.domain.board.service.BoardService;
@@ -26,17 +27,18 @@ public class BoardController {
     }
 
     @Operation(summary = "게시글 수정")
-    @PutMapping("/update")
+    @PutMapping("/{id}/update")
     public BoardResponseDto updateBoard(@PathVariable Long id, @RequestBody BoardRequestDto boardRequestDto) {
         return boardService.updateBoard(id, boardRequestDto);
     }
 
     @Operation(summary = "게시글 목록 조회")
     @GetMapping
-    public Page<BoardResponseDto> getBoards(@RequestParam(defaultValue = "0") int page,
-                                            @RequestParam(defaultValue = "10") int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        return boardService.getBoards(pageable);
+    public Page<BoardListResponseDto> getBoards(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        return boardService.getBoards(page, size);
     }
 
     @Operation(summary = "게시글 단건 조회")
