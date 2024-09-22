@@ -45,9 +45,19 @@ public class BoardService {
     }
 
     public Page<BoardListResponseDto> getBoards(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createdDate")); // 최신순 정렬 추가
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createdDate"));
         return boardRepository.findByDeletedFalse(pageable)
                 .map(BoardListResponseDto::new);
+    }
+
+    @Transactional
+    public void deleteBoard(Long id) {
+        Board board = boardRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시글입니다."));
+
+        commentRepository.deleteByBoard(board);
+
+        board.delete();
     }
 
 

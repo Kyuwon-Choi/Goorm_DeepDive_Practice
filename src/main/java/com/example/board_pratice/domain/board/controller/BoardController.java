@@ -8,8 +8,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -46,6 +44,13 @@ public class BoardController {
     public BoardResponseDto getBoard(@PathVariable Long id) {
         return boardService.getBoard(id);
     }
+
+    @Operation(summary = "게시글 삭제")
+    @DeleteMapping("/{id}")
+    public void deleteBoard(@PathVariable Long id) {
+        boardService.deleteBoard(id);
+    }
+
 
 
 
